@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import AppHeader from "./components/app-header.jsx";
+import SearchPanel from "./components/search-panel.jsx";
+import TodoList from "./components/todo-list.jsx";
 
-const el = (
+const App = () => {
+  return (
   <div>
-    <input placeholder="search" />
-    <ul>
-      <li>Learn React</li>
-      <li>Build Awesome App</li>
-    </ul>
+    <AppHeader />
+    <SearchPanel />
+    <TodoList />
   </div>
-);
+  );
+};
 
-ReactDOM.render(el, document.getElementById(`root`));
+ReactDOM.render(<App />, document.getElementById(`root`));
