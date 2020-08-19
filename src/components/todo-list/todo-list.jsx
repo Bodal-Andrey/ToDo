@@ -3,9 +3,9 @@ import TodoListItem from "../todo-list-item/todo-list-item.jsx";
 import "./todo-list.css";
 
 const TodoList = (props) => {
-  const {todos: item} = props;
+  const {todos} = props;
 
-  const elements = item.map((item) => {
+  const elements = todos.map((item) => {
     const {id, ...itemProps} = item;
     return (
       <li key={id} className="list-group-item">
