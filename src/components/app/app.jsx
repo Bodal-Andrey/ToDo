@@ -3,21 +3,26 @@ import AppHeader from "../app-header/app-header.jsx";
 import SearchPanel from "../search-panel/search-panel.jsx";
 import TodoList from "../todo-list/todo-list.jsx";
 import ItemStatusFilter from "../item-status-filter/item-status-filter.jsx";
+import ItemAddForm from "../item-add-form/item-add-form.jsx";
+import "./app.css";
 
 class App extends React.Component {
   constructor() {
     super();
 
-    this.deleteItem = this.deleteItem.bind(this);
-  }
+    this.maxId = 100;
 
-  state = {
-    todoData: [
-      {label: `Drink cofee`, important: false, id: 1},
-      {label: `Make Awesome App`, important: true, id: 2},
-      {label: `Have a lunch`, important: false, id: 3}
-    ],
-  };
+    this.state = {
+      todoData: [
+        {label: `Drink cofee`, important: false, id: 1},
+        {label: `Make Awesome App`, important: true, id: 2},
+        {label: `Have a lunch`, important: false, id: 3}
+      ],
+    };
+
+    this.deleteItem = this.deleteItem.bind(this);
+    this.addItem = this.addItem.bind(this);
+  }
   
   deleteItem = (id) => {
     this.setState((state) => {
@@ -34,6 +39,25 @@ class App extends React.Component {
     });
   };
 
+  addItem = (text) => {
+    const newItem = {
+      label: text,
+      important: false,
+      id: this.maxId++
+    };
+
+    this.setState((state) => {
+      const newArr = [
+        ...state.todoData,
+        newItem
+      ];
+
+      return {
+        todoData: newArr,
+      };
+    });
+  };
+
   render() {
     return (
       <div className="todo-app">
@@ -43,6 +67,7 @@ class App extends React.Component {
           <ItemStatusFilter />
         </div>
         <TodoList onDeleted={this.deleteItem} todos={this.state.todoData} />
+        <ItemAddForm onItemAdded={this.addItem} />
       </div>
       );
   }
