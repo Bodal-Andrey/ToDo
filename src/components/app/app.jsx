@@ -7,8 +7,8 @@ import ItemAddForm from "../item-add-form/item-add-form.jsx";
 import "./app.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.maxId = 100;
 
